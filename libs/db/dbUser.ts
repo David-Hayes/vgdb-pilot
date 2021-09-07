@@ -1,4 +1,10 @@
-import { getFirestore, doc, getDoc } from 'firebase/firestore'
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  collection,
+  setDoc,
+} from 'firebase/firestore'
 import firebaseApp from '../firebase'
 
 const db = getFirestore(firebaseApp)
@@ -14,4 +20,8 @@ export const getUserByID = async (uid: string) => {
   }
 }
 
-export const createUser = (uid: string, data: any) => {}
+export const createUser = async (uid: string, data: any) => {
+  if (!uid) return null
+  const usersRef = collection(db, 'users')
+  await setDoc(doc(usersRef, 'uid'), { uid, ...data })
+}
