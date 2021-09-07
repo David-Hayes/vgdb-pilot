@@ -6,7 +6,7 @@ export const Header = () => {
   const { user } = useAppState()
 
   return (
-    <header>
+    <header className="py-3">
       <Container>
         <Link href="/">
           <a>VGDB</a>
