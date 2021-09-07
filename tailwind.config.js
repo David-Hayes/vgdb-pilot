@@ -18,7 +18,7 @@ module.exports = {
       red: colors.red,
     },
     fontFamily: {
-      sans: ['"Montserrat", sans-serif'],
+      sans: ['"Roboto", sans-serif'],
     },
   },
   variants: {

@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "npm run test:unit",
+    "test:unit": "jest --passWithNoTests",
+    "test:unit:update": "jest --passWithNoTests --updateSnapshot"
   },
   "dependencies": {
     "firebase": "^9.0.1",
@@ -16,10 +19,14 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.3",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
     "@types/react": "17.0.20",
     "autoprefixer": "^10.3.4",
+    "dotenv": "^10.0.0",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
+    "jest": "^27.1.0",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.10",
     "typescript": "4.4.2"
