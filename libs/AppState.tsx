@@ -72,7 +72,6 @@ const fetchUser = async (user: User) => {
   if (!userData) {
     await createUser(user.uid, { joined: Date.now(), lists: defaultLists })
   }
-  console.log(userData)
   return {
     uid: user.uid,
     username: userData?.username || null,

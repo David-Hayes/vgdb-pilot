@@ -23,5 +23,5 @@ export const getUserByID = async (uid: string) => {
 export const createUser = async (uid: string, data: any) => {
   if (!uid) return null
   const usersRef = collection(db, 'users')
-  await setDoc(doc(usersRef, 'uid'), { uid, ...data })
+  await setDoc(doc(usersRef, uid), { uid, ...data })
 }

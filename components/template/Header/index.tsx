@@ -12,7 +12,7 @@ export const Header = () => {
           <a>VGDB</a>
         </Link>{' '}
         {user ? (
-          'true'
+          'Profile'
         ) : (
           <Link href="/signin">
             <a>Sign in</a>
