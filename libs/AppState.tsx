@@ -6,6 +6,7 @@ import {
   User,
   signOut as authSignOut,
 } from 'firebase/auth'
+import { getUserByID, createUser } from './db/dbUser'
 
 export type UserProps = {
   uid: string
@@ -26,35 +27,59 @@ type AppProviderProps = {
   children: React.ReactNode
 }
 
+const defaultLists = ['Played']
+
 const AppContext = createContext<Partial<AppContextProps>>({})
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const auth = getAuth(firebaseApp)
   const [user, setUser] = useState<UserProps | null>(null)
+  const [authLoading, setAuthLoading] = useState(true)
 
-  const handleUser = (rawUser: User | null) => {
-    console.log(rawUser)
+  const handleUser = async (rawUser: User | null) => {
+    if (rawUser) {
+      const user = await fetchUser(rawUser)
+      setUser(user)
+      setAuthLoading(false)
+      return user
+    }
+    setUser(null)
+    setAuthLoading(false)
+    return false
   }
 
   const signOut = () => {
-    const auth = getAuth(firebaseApp)
     authSignOut(auth).then(() => {
       handleUser(null)
     })
   }
 
   useEffect(() => {
-    const auth = getAuth(firebaseApp)
     onAuthStateChanged(auth, (firebaseUser) => {
       handleUser(firebaseUser)
     })
-  }, [])
+  }, [auth])
 
   return (
-    <AppContext.Provider value={{ user, signOut }}>
+    <AppContext.Provider value={{ user, authLoading, signOut }}>
       {children}
     </AppContext.Provider>
   )
+}
+
+const fetchUser = async (user: User) => {
+  const userData = await getUserByID(user.uid)
+  if (!userData) {
+    await createUser(user.uid, { joined: Date.now(), lists: defaultLists })
+  }
+  console.log(userData)
+  return {
+    uid: user.uid,
+    username: userData?.username || null,
+    avatar: userData?.avatar || null,
+    joined: userData?.joined || null,
+    lists: userData?.lists || defaultLists,
+  }
 }
 
 export const useAppState = () => {
