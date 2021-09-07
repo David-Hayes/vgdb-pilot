@@ -71,14 +71,14 @@ const Game: NextPage = () => {
           backgroundSize: `cover`,
         }}
       >
-        <Container className="flex gap-6">
+        <Container className="flex flex-col md:flex-row gap-6">
           <div>
             <img
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${
                 game.cover ? game.cover.image_id : `nocover_qhhlj6`
               }.jpg`}
               alt={game.name}
-              className="shadow-md w-44"
+              className="shadow-md w-44 mx-auto"
             />
           </div>
           <div>
