@@ -78,7 +78,7 @@ const Game: NextPage = () => {
                 game.cover ? game.cover.image_id : `nocover_qhhlj6`
               }.jpg`}
               alt={game.name}
-              className="shadow-md w-44 mx-auto"
+              className="shadow-md rounded-md w-44 mx-auto"
             />
           </div>
           <div>
