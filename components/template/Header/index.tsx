@@ -1,9 +1,24 @@
+import { useAppState } from '../../../libs/AppState'
+import Link from 'next/link'
 import { Container } from '../Container'
 
 export const Header = () => {
+  const { user } = useAppState()
+
   return (
     <header>
-      <Container>VGDB</Container>
+      <Container>
+        <Link href="/">
+          <a>VGDB</a>
+        </Link>{' '}
+        {user ? (
+          'true'
+        ) : (
+          <Link href="/signin">
+            <a>Sign in</a>
+          </Link>
+        )}
+      </Container>
     </header>
   )
 }
