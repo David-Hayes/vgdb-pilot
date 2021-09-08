@@ -4,11 +4,15 @@ import { Container } from '../Container'
 import Logo from '../../../public/assets/logo.svg'
 import Image from 'next/image'
 
-export const Header = () => {
+type HeaderProps = {
+  topMargin: boolean
+}
+
+export const Header = ({ topMargin }: HeaderProps) => {
   const { user } = useAppState()
 
   return (
-    <header className="py-3">
+    <header className={`py-3 ${topMargin ? `mb-5` : ``}`}>
       <Container className="flex justify-between items-center">
         <Link href="/">
           <a className="flex items-center gap-3">
@@ -22,7 +26,7 @@ export const Header = () => {
           'Profile'
         ) : (
           <Link href="/signin">
-            <a>Sign in</a>
+            <a>Sign in / Sign up</a>
           </Link>
         )}
       </Container>

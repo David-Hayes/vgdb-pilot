@@ -60,7 +60,7 @@ const Game: NextPage = () => {
   return (
     <Main title={game.name} topMargin={false} fullWidth={true}>
       <div
-        className="py-10"
+        className="py-10 border-b-8 border-secondaryAlt"
         style={{
           backgroundImage: `linear-gradient(rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 1)), ${
             game.screenshots

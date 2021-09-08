@@ -20,7 +20,6 @@ type AppContextProps = {
   user: UserProps | null
   authLoading: boolean
   signOut: Function | any // TODO amend any
-  reinstateUser: Function | any // TODO amend any
 }
 
 type AppProviderProps = {

@@ -26,7 +26,7 @@ export const Main = ({
         </div>
       )}
       <div className="flex flex-col justify-between h-screen">
-        <Header />
+        <Header topMargin={topMargin} />
         <div className="mb-auto">
           {fullWidth ? <>{children}</> : <Container>{children}</Container>}
         </div>
