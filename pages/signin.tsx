@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import { Main } from '../components/template/Main'
 import { Card } from '../components/ui/Card'
 import { H1 } from '../components/ui/Headings'
-import { SignIn as SignInComposition } from '../components/composition/SignIn'
-import { SignUp } from '../components/composition/SignUp'
+import { SignIn as SignInComposition } from '../components/compositions/SignIn'
+import { SignUp } from '../components/compositions/SignUp'
 
 const SignIn: NextPage = () => {
   return (
