@@ -7,13 +7,16 @@ import { apiGame } from '../../libs/api/ApiRoutes'
 import { Main } from '../../components/template/Main'
 import { Container } from '../../components/template/Container'
 import { Loader } from '../../components/ui/Loader'
-import { H1 } from '../../components/ui/Headings'
+import { H1, H2 } from '../../components/ui/Headings'
+import { Card } from '../../components/ui/Card'
+import { Link } from '../../components/ui/Link'
 
 const Game: NextPage = () => {
   const { user } = useAppState()
   const { query } = useRouter()
   const [game, setGame] = useState<any | null>(null)
   const [heroScreen, setHeroScreen] = useState(0)
+  const gameDetailTableCell = 'w-1/2 align-top py-2'
 
   useEffect(() => {
     if (query.slug) {
@@ -60,7 +63,7 @@ const Game: NextPage = () => {
   return (
     <Main title={game.name} topMargin={false} fullWidth={true}>
       <div
-        className="py-10 border-b-8 border-secondaryAlt"
+        className="py-10 mb-8 border-b-8 border-primaryAlt"
         style={{
           backgroundImage: `linear-gradient(rgba(30, 30, 30, 0.5), rgba(30, 30, 30, 1)), ${
             game.screenshots
@@ -91,6 +94,67 @@ const Game: NextPage = () => {
           </div>
         </Container>
       </div>
+      <Container className="grid md:grid-cols-3 gap-8">
+        <main className="md:col-span-2 space-y-10">
+          {(game.summary || game.storyline) && (
+            <div>
+              <H2>Overview</H2>
+              {game.summary &&
+                game.summary.split('\n').map((item: string, key: number) => {
+                  return (
+                    <p key={key} className="mb-4">
+                      {item}
+                    </p>
+                  )
+                })}
+              {game.storyline &&
+                game.storyline.split('\n').map((item: string, key: number) => {
+                  return (
+                    <p key={key} className="mb-4">
+                      {item}
+                    </p>
+                  )
+                })}
+            </div>
+          )}
+        </main>
+        <aside>
+          <Card className="text-sm">
+            <table>
+              {game.platforms && (
+                <tr>
+                  <td className={gameDetailTableCell}>Platforms:</td>
+                  <td className={gameDetailTableCell}>
+                    {game.platforms.map((platform: any, index: number) => (
+                      <p key={`platform${index}`}>{platform.name}</p>
+                    ))}
+                  </td>
+                </tr>
+              )}
+              {game.collection && (
+                <tr>
+                  <td className={gameDetailTableCell}>Franchises</td>
+                  <td className={gameDetailTableCell}>
+                    <Link href={`/franchises/${game.collection.slug}`}>
+                      {game.collection.name}
+                    </Link>
+                  </td>
+                </tr>
+              )}
+              {game.genres && (
+                <tr>
+                  <td className={gameDetailTableCell}>Genres</td>
+                  <td className={gameDetailTableCell}>
+                    {game.genres.map((genre: any, index: number) => (
+                      <p key={`genre${index}`}>{genre.name}</p>
+                    ))}
+                  </td>
+                </tr>
+              )}
+            </table>
+          </Card>
+        </aside>
+      </Container>
     </Main>
   )
 }

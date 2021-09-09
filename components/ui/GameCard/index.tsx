@@ -14,7 +14,7 @@ export const GameCard = ({ data }: GameCardProps) => {
     <Link href={`/games/${data.slug}`}>
       <a
         title={data.name}
-        className="block bg-gray-700 hover:text-secondary shadow-md rounded-md overflow-hidden"
+        className="block bg-gray-700 hover:text-primary shadow-md rounded-md overflow-hidden"
       >
         <img src={coverImage} alt={data.name} />
         <div className="p-3 text-sm">{data.name}</div>

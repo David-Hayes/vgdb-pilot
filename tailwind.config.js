@@ -8,10 +8,10 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      primary: '#0078D4',
-      primaryAlt: '#006BBD',
-      secondary: '#FB923C',
-      secondaryAlt: '#FB8728',
+      primary: '#FB923C',
+      primaryAlt: '#FB8728',
+      secondary: '#0078D4',
+      secondaryAlt: '#006BBD',
       black: colors.black,
       white: colors.white,
       gray: colors.trueGray,
@@ -22,7 +22,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      borderStyle: ['hover'],
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 }
