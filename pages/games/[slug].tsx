@@ -117,6 +117,20 @@ const Game: NextPage = () => {
                 })}
             </div>
           )}
+          {game.screenshots && (
+            <>
+              <H2>Screenshots</H2>
+              <div className="grid grid-cols-3 gap-4">
+                {game.screenshots.map((screenshot: any, index: number) => (
+                  <img
+                    src={`//images.igdb.com/igdb/image/upload/t_screenshot_med/${screenshot.image_id}.jpg`}
+                    alt=""
+                    key={index}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </main>
         <aside>
           <Card className="text-sm">
