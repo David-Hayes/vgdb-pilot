@@ -118,7 +118,7 @@ const Game: NextPage = () => {
             </div>
           )}
           {game.screenshots && (
-            <>
+            <div>
               <H2>Screenshots</H2>
               <div className="grid grid-cols-3 gap-4">
                 {game.screenshots.map((screenshot: any, index: number) => (
@@ -129,7 +129,7 @@ const Game: NextPage = () => {
                   />
                 ))}
               </div>
-            </>
+            </div>
           )}
         </main>
         <aside>
