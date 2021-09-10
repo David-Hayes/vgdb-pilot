@@ -145,36 +145,38 @@ const Game: NextPage = () => {
           <aside>
             <Card className="text-sm">
               <table>
-                {game.platforms && (
-                  <tr>
-                    <td className={gameDetailTableCell}>Platforms:</td>
-                    <td className={gameDetailTableCell}>
-                      {game.platforms.map((platform: any, index: number) => (
-                        <p key={`platform${index}`}>{platform.name}</p>
-                      ))}
-                    </td>
-                  </tr>
-                )}
-                {game.collection && (
-                  <tr>
-                    <td className={gameDetailTableCell}>Franchises</td>
-                    <td className={gameDetailTableCell}>
-                      <Link href={`/franchises/${game.collection.slug}`}>
-                        {game.collection.name}
-                      </Link>
-                    </td>
-                  </tr>
-                )}
-                {game.genres && (
-                  <tr>
-                    <td className={gameDetailTableCell}>Genres</td>
-                    <td className={gameDetailTableCell}>
-                      {game.genres.map((genre: any, index: number) => (
-                        <p key={`genre${index}`}>{genre.name}</p>
-                      ))}
-                    </td>
-                  </tr>
-                )}
+                <tbody>
+                  {game.platforms && (
+                    <tr>
+                      <td className={gameDetailTableCell}>Platforms:</td>
+                      <td className={gameDetailTableCell}>
+                        {game.platforms.map((platform: any, index: number) => (
+                          <p key={`platform${index}`}>{platform.name}</p>
+                        ))}
+                      </td>
+                    </tr>
+                  )}
+                  {game.collection && (
+                    <tr>
+                      <td className={gameDetailTableCell}>Franchises</td>
+                      <td className={gameDetailTableCell}>
+                        <Link href={`/franchises/${game.collection.slug}`}>
+                          {game.collection.name}
+                        </Link>
+                      </td>
+                    </tr>
+                  )}
+                  {game.genres && (
+                    <tr>
+                      <td className={gameDetailTableCell}>Genres</td>
+                      <td className={gameDetailTableCell}>
+                        {game.genres.map((genre: any, index: number) => (
+                          <p key={`genre${index}`}>{genre.name}</p>
+                        ))}
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
               </table>
             </Card>
           </aside>
