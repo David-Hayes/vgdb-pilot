@@ -47,7 +47,9 @@ export const Header = ({ topMargin }: HeaderProps) => {
             </Link>
           ) : (
             <Link href="/signin">
-              <a>Sign in / Sign up</a>
+              <a className="bg-gray-700 hover:bg-gray-600 py-1 px-3 rounded-md">
+                Sign in / Sign up
+              </a>
             </Link>
           )}
         </div>
