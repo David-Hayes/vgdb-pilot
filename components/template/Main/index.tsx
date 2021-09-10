@@ -1,5 +1,7 @@
+import Head from 'next/head'
 import { ReactNode } from 'react'
 import { Header } from '../Header'
+import { Footer } from '../Footer'
 import { Container } from '../Container'
 
 type MainProps = {
@@ -17,6 +19,14 @@ export const Main = ({
 }: MainProps) => {
   return (
     <>
+      <Head>
+        <title>
+          {title
+            ? `${title} | vgdb`
+            : 'vgdb - Track, Manage and Discover Video Games'}
+        </title>
+        <meta name="robots" content="noindex" />
+      </Head>
       {process.env.NEXT_PUBLIC_ENV === 'PROD' && (
         <div className="bg-white text-gray-800 py-3 text-sm">
           <Container className="text-center">
@@ -30,6 +40,7 @@ export const Main = ({
         <div className="mb-auto">
           {fullWidth ? <>{children}</> : <Container>{children}</Container>}
         </div>
+        <Footer />
       </div>
     </>
   )

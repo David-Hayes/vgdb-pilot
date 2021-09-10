@@ -1,0 +1,30 @@
+name: Next
+
+on:
+  push:
+    branches: [next]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_FIREBASE_APIKEY: ${{ secrets.FIREBASE_APIKEY }}
+      NEXT_PUBLIC_FIREBASE_AUTHDOMAIN: ${{ secrets.FIREBASE_AUTHDOMAIN }}
+      NEXT_PUBLIC_FIREBASE_PROJECTID: ${{ secrets.FIREBASE_PROJECTID }}
+      NEXT_PUBLIC_FIREBASE_APPID: ${{ secrets.FIREBASE_APPID }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Tests
+        run: npm run test
+
+      - name: Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

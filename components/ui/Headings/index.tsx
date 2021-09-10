@@ -24,7 +24,7 @@ export const H2: FC<HeadingProps> = ({
   asElm = 'h2',
   className = '',
 }) => (
-  <Heading asElm={asElm} className={`text-xl font-bold mb-3 ${className}`}>
+  <Heading asElm={asElm} className={`text-2xl font-bold mb-3 ${className}`}>
     {children}
   </Heading>
 )
