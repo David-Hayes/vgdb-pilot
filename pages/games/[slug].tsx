@@ -100,7 +100,7 @@ const Game: NextPage = () => {
         <Container className="grid md:grid-cols-3 gap-8">
           <main className="md:col-span-2 space-y-10">
             {(game.summary || game.storyline) && (
-              <div>
+              <Card>
                 <H2>Overview</H2>
                 {game.summary &&
                   game.summary.split('\n').map((item: string, key: number) => {
@@ -120,10 +120,10 @@ const Game: NextPage = () => {
                         </p>
                       )
                     })}
-              </div>
+              </Card>
             )}
             {game.screenshots && (
-              <div>
+              <Card>
                 <H2>Screenshots</H2>
                 <div className="grid grid-cols-3 gap-4">
                   {game.screenshots.map((screenshot: any, index: number) => (
@@ -139,7 +139,7 @@ const Game: NextPage = () => {
                     </button>
                   ))}
                 </div>
-              </div>
+              </Card>
             )}
           </main>
           <aside>
