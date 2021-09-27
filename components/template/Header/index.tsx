@@ -42,7 +42,7 @@ export const Header = ({ topMargin }: HeaderProps) => {
             </a>
           </Link>
           {user ? (
-            <Link href="/signin">
+            <Link href="/profile">
               <a>Profile</a>
             </Link>
           ) : (
