@@ -33,7 +33,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     url: 'https://api.igdb.com/v4/games',
     method: 'POST',
     headers: defaultHeaders,
-    data: `fields name, cover.*, first_release_date, summary, storyline, platforms.*, screenshots.*, aggregated_rating, aggregated_rating_count, franchises.*, collection.*, genres.*; where slug = "${slug}";`,
+    data: `fields name, cover.*, first_release_date, summary, storyline, platforms.*, screenshots.*, aggregated_rating, aggregated_rating_count, franchises.*, collection.*, genres.*, involved_companies.*, involved_companies.company.name; where slug = "${slug}";`,
   })
     .then((response) => {
       res.status(200).json(response.data[0])
