@@ -62,6 +62,38 @@ const Game: NextPage = () => {
     )
   }
 
+  const developers = (companies: any) => {
+    const uniqueArray = companies.filter((thing: any, index: any) => {
+      const _thing = JSON.stringify(thing.company.name)
+      if (!thing.developer) {
+        return false
+      }
+      return (
+        index ===
+        companies.findIndex((obj: any) => {
+          return JSON.stringify(obj.company.name) === _thing
+        })
+      )
+    })
+    return uniqueArray
+  }
+  const publishers = (companies: any) => {
+    const uniqueArray = companies.filter((thing: any, index: any) => {
+      const _thing = JSON.stringify(thing.company.name)
+      if (!thing.publisher) {
+        console.log(thing)
+        return false
+      }
+      return (
+        index ===
+        companies.findIndex((obj: any) => {
+          return JSON.stringify(obj.company.name) === _thing
+        })
+      )
+    })
+    return uniqueArray
+  }
+
   return (
     <>
       <Main title={game.name} topMargin={false} fullWidth={true}>
@@ -100,7 +132,7 @@ const Game: NextPage = () => {
         <Container className="grid md:grid-cols-3 gap-8">
           <main className="md:col-span-2 space-y-10">
             {(game.summary || game.storyline) && (
-              <div>
+              <Card>
                 <H2>Overview</H2>
                 {game.summary &&
                   game.summary.split('\n').map((item: string, key: number) => {
@@ -120,10 +152,10 @@ const Game: NextPage = () => {
                         </p>
                       )
                     })}
-              </div>
+              </Card>
             )}
             {game.screenshots && (
-              <div>
+              <Card>
                 <H2>Screenshots</H2>
                 <div className="grid grid-cols-3 gap-4">
                   {game.screenshots.map((screenshot: any, index: number) => (
@@ -139,7 +171,7 @@ const Game: NextPage = () => {
                     </button>
                   ))}
                 </div>
-              </div>
+              </Card>
             )}
           </main>
           <aside>
@@ -175,6 +207,30 @@ const Game: NextPage = () => {
                         ))}
                       </td>
                     </tr>
+                  )}
+                  {game.involved_companies && (
+                    <>
+                      <tr>
+                        <td className={gameDetailTableCell}>Developer</td>
+                        <td>
+                          {developers(game.involved_companies).map(
+                            (a: any, b: number) => (
+                              <p key={b}>{a.company.name}</p>
+                            )
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className={gameDetailTableCell}>Publisher</td>
+                        <td>
+                          {publishers(game.involved_companies).map(
+                            (a: any, b: number) => (
+                              <p key={b}>{a.company.name}</p>
+                            )
+                          )}
+                        </td>
+                      </tr>
+                    </>
                   )}
                 </tbody>
               </table>
